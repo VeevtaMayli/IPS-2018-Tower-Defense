@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Tower Defense</title>
+    <style>
+        html,
+        body
+        {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .container
+        {
+            background: black;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container canvas
+        {
+            outline: 1px solid palegoldenrod;
+        }
+    </style>
+    <script type="text/javascript" src="./js/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <canvas id="canvas" width=800 height=600></canvas>
+    </div>
+    <script>
+        main();
+    </script>
+</body>
+</html>

@@ -17,7 +17,7 @@ function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets}) {
 }
 
 function drawMap({ctx, boxWidth, boxHeight, map}) {
-    ctx.fillStyle = "#FFF";
+    ctx.fillStyle = "#000";
     ctx.fillRect(0, 0, boxWidth, boxHeight);
 
     const start = map[0];
@@ -53,7 +53,7 @@ function drawTurret({ctx, turret}) {
     ctx.arc(turret.x, turret.y, turret.range, 0, Math.PI * 2);
     ctx.fill();
 
-    ctx.fillStyle = "violet";
+    ctx.fillStyle = "green";
     ctx.beginPath();
     ctx.arc(turret.x, turret.y, turret.size, 0, Math.PI * 2);
     ctx.fill();

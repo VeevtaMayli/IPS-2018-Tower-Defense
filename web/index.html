@@ -12,24 +12,57 @@
             padding: 0;
             height: 100%;
         }
-        .container
+        .game-container
         {
             background: black;
-            width: 100%;
-            height: 100%;
+            width: 800px;
+            height: 600px;
+            margin: 0 calc((100% - 800px) / 2);
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        .container canvas
+        .game-controls
         {
-            outline: 1px solid palegoldenrod;
+            width: 800px;
+            margin: 0 calc((100% - 800px) / 2);
+        }
+        .turret-cart
+        {
+            display: inline-block;
+            width: 90px;
+            border: black 1px solid;
+            cursor: pointer;
         }
     </style>
 </head>
 <body>
-    <div class="container">
+    <div id="game-pages" class="game-container">
         <canvas id="canvas" width=800 height=600></canvas>
+    </div>
+    <div id="game-control-panel" class="game-controls">
+        <div id="left-control-panel">
+            <div id="turrets-buy-controls">
+                <a data-name="Laser" class="turret-cart">
+                    <img src="#" class="turret-cart__image">
+                    <div class="turret-cart__description">Laser ($0)</div>
+                </a>
+            </div>
+            <div id="turrets-manage-controls">
+
+            </div>
+        </div>
+        <div id="right-control-panel">
+            <div id="time-manage-panel">
+
+            </div>
+            <div id="counter-panel">
+
+            </div>
+            <div id="session-panel">
+
+            </div>
+        </div>
     </div>
     <script type="module" src="./js/main.js"></script>
 </body>

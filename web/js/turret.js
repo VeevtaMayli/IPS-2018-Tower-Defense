@@ -1,11 +1,11 @@
 const TURRET_DAMAGE = 10;
 const TURRET_FREQUENCY = 30;
-const TURRET_RANGE = 80;
+const TURRET_RANGE = 100;
 const TURRET_SIZE = 20;
 
 function Turret(shoot) {
-    this.x = 100;
-    this.y = 110;
+    this.x = 640;
+    this.y = 140;
     this.size = TURRET_SIZE;
     this.damage = TURRET_DAMAGE;
     this.rate = TURRET_FREQUENCY;

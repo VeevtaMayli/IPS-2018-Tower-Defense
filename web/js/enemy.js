@@ -2,7 +2,7 @@ import {PATH_WIDTH} from './maps.js';
 import {game} from './game.js';
 
 const ENEMY_SIZE = 9;
-const ENEMY_SPEED = 70;
+const ENEMY_SPEED = 90;
 const ENEMIES_COUNT = 10;
 
 function Enemy({startX, startY, offset, hp, startPoint}) {

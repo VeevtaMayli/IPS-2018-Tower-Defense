@@ -50,7 +50,7 @@ const game = {
             turrets: game.turrets,
             bullets: game.bullets
         });
-        game.ticks++;
+        console.log(game.ticks++);
         requestAnimationFrame(game.tick);
     }
 };

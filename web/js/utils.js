@@ -10,7 +10,7 @@ function moveToTarget({object, target, dt}) {
 }
 
 function inRadius({target, object, radius}) {
-    return (Math.pow(object.x - target.x, 2)) +(Math.pow(object.y - target.y, 2)) < radius * radius;
+    return (Math.pow(object.x - target.x, 2)) + (Math.pow(object.y - target.y, 2)) < radius * radius;
 }
 
 export {

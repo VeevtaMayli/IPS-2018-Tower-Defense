@@ -1,10 +1,9 @@
 import {MAPS} from "./maps.js";
 import {createEnemies, ENEMIES_COUNT, ENEMY_SIZE} from "./enemy.js";
-import {Turret, laserShoot} from "./turret.js";
 import {redraw} from "./drawing.js";
 import {update} from "./updating.js";
 
-const game = {
+let game = {
     kills: 0,
     ticks: 0,
     lastTimestamp: Date.now(),
@@ -22,8 +21,6 @@ const game = {
         game.enemyStart = {x: game.map[0].x - ENEMY_SIZE, y: game.map[0].y};
 
         createEnemies(game.enemies, ENEMIES_COUNT);
-
-        game.turrets.push(new Turret(laserShoot));
     },
 
     tick: () => {
@@ -50,7 +47,7 @@ const game = {
             turrets: game.turrets,
             bullets: game.bullets
         });
-        console.log(game.ticks++);
+        game.ticks++;
         requestAnimationFrame(game.tick);
     }
 };

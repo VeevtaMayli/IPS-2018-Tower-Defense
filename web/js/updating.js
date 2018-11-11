@@ -1,5 +1,5 @@
 import {game} from "./game.js";
-import {inRadius, moveToTarget} from "./utils.js";
+import {inRadius, moveToTarget} from "./game_utils.js";
 
 function update({map, enemies, turrets, bullets, dt}) {
     enemies.forEach((enemy, i, enemiesArr) => {

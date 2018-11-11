@@ -1,3 +1,4 @@
+import {ui} from "./interface.js";
 import {game} from "./game.js";
 
 (function main() {
@@ -9,6 +10,7 @@ import {game} from "./game.js";
         context: canvas.getContext('2d')
     };
 
+    ui.initialize();
     game.initialize(gameArea);
     game.tick();
 })();

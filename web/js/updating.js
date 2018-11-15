@@ -1,7 +1,14 @@
-import {game} from "./game.js";
+import {WAVE_FREQUENCY, game} from "./game.js";
 import {inRadius, moveToTarget} from "./game_utils.js";
+import {createEnemies, ENEMIES_COUNT} from "./enemy.js";
 
 function update({map, enemies, turrets, bullets, dt}) {
+    if (game.lastWave + WAVE_FREQUENCY === game.ticks) {
+        game.wave++;
+        createEnemies(game.enemies, ENEMIES_COUNT);
+        game.lastWave = game.ticks;
+    }
+
     enemies.forEach((enemy, i, enemiesArr) => {
         if (enemy.hp <= 0) {
             console.log("[", i, "] убит!");

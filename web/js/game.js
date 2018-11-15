@@ -1,11 +1,16 @@
 import {MAPS} from "./maps.js";
-import {createEnemies, ENEMIES_COUNT, ENEMY_SIZE} from "./enemy.js";
+import {ENEMY_SIZE} from "./enemy.js";
 import {redraw} from "./drawing.js";
 import {update} from "./updating.js";
+const WAVE_FREQUENCY = 600;
 
 let game = {
     kills: 0,
     ticks: 0,
+
+    wave: 0,
+    lastWave: 0,
+
     lastTimestamp: Date.now(),
 
     map: MAPS.baseMap,
@@ -18,9 +23,10 @@ let game = {
         game.widthArea = width;
         game.heightArea = height;
 
-        game.enemyStart = {x: game.map[0].x - ENEMY_SIZE, y: game.map[0].y};
-
-        createEnemies(game.enemies, ENEMIES_COUNT);
+        game.enemyStart = {
+            x: game.map[0].x - ENEMY_SIZE,
+            y: game.map[0].y
+        };
     },
 
     tick: () => {
@@ -52,4 +58,7 @@ let game = {
     }
 };
 
-export {game};
+export {
+    WAVE_FREQUENCY,
+    game
+};

@@ -1,8 +1,9 @@
 import {TURRETS, Turret} from "./turret.js";
-import {game} from "./game.js";
+import {WAVE_FREQUENCY, game} from "./game.js";
 
 const ui = {
-    buyControls: document.getElementById("turrets-buy-controls"),
+    buyControls: document.getElementById("turrets_buy_controls"),
+    waveStarter: document.getElementById("wave_starter"),
 
     bind: (event, elements, func) => {
         Array.prototype.slice.call(elements).forEach((elements) => {
@@ -24,6 +25,10 @@ const ui = {
     initialize: () => {
         ui.bind("click", ui.buyControls.children, function() {
             ui.action.build(this.dataset.name);
+        });
+        
+        ui.waveStarter.addEventListener("click", () => {
+            game.lastWave = game.ticks - WAVE_FREQUENCY;
         });
     }
 };

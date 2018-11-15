@@ -25,7 +25,16 @@
         .game-controls
         {
             width: 800px;
+            height: 45px;
             margin: 0 calc((100% - 800px) / 2);
+        }
+        .panel__left
+        {
+            float: left;
+        }
+        .panel__right
+        {
+            float: right;
         }
         .turret-cart
         {
@@ -34,32 +43,41 @@
             border: black 1px solid;
             cursor: pointer;
         }
+        .wave-starter
+        {
+            background-color: #0F0;
+            display: block;
+            height: 20px;
+            margin-bottom: 2px;
+            width: 20px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-    <div id="game-pages" class="game-container">
+    <div id="game_pages" class="game-container">
         <canvas id="canvas" width=800 height=600></canvas>
     </div>
-    <div id="game-control-panel" class="game-controls">
-        <div id="left-control-panel">
-            <div id="turrets-buy-controls">
+    <div id="game_control_panel" class="game-controls">
+        <div id="left_control_panel" class="panel__left">
+            <div id="turrets_buy_controls">
                 <a data-name="Laser" class="turret-cart">
                     <img src="#" class="turret-cart__image">
                     <div class="turret-cart__description">Laser ($0)</div>
                 </a>
             </div>
-            <div id="turrets-manage-controls">
+            <div id="turrets_manage_controls">
 
             </div>
         </div>
-        <div id="right-control-panel">
-            <div id="time-manage-panel">
+        <div id="right_control_panel" class="panel__right">
+            <div id="time_manage_panel">
+                <a id="wave_starter" class="button wave-starter"></a>
+            </div>
+            <div id="counter_panel">
 
             </div>
-            <div id="counter-panel">
-
-            </div>
-            <div id="session-panel">
+            <div id="session_panel">
 
             </div>
         </div>

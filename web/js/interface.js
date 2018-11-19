@@ -26,7 +26,7 @@ const ui = {
         ui.bind("click", ui.buyControls.children, function() {
             ui.action.build(this.dataset.name);
         });
-        
+
         ui.waveStarter.addEventListener("click", () => {
             game.lastWave = game.ticks - WAVE_FREQUENCY;
         });

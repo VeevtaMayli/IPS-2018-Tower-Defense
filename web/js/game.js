@@ -2,6 +2,8 @@ import {MAPS} from "./maps.js";
 import {ENEMY_SIZE} from "./enemy.js";
 import {redraw} from "./drawing.js";
 import {update} from "./updating.js";
+import {splitIntoTiles} from "./game_utils.js";
+
 const WAVE_FREQUENCY = 600;
 
 let game = {
@@ -14,6 +16,8 @@ let game = {
     lastTimestamp: Date.now(),
 
     map: MAPS.baseMap,
+    tiles: {},
+
     enemies: [],
     turrets: [],
     bullets: [],
@@ -22,6 +26,10 @@ let game = {
         game.context = context;
         game.widthArea = width;
         game.heightArea = height;
+
+        splitIntoTiles(game.map.map((p) => {
+            return {x: p.x, y: p.y};
+        }), game.tiles, 5);
 
         game.enemyStart = {
             x: game.map[0].x - ENEMY_SIZE,

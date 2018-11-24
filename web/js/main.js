@@ -2,12 +2,10 @@ import {ui} from "./interface.js";
 import {game} from "./game.js";
 
 (function main() {
-    const canvas = document.getElementById("canvas");
-
     const gameArea = {
-        width: canvas.offsetWidth,
-        height: canvas.offsetHeight,
-        context: canvas.getContext('2d')
+        width: ui.canvas.offsetWidth,
+        height: ui.canvas.offsetHeight,
+        context: ui.canvas.getContext('2d')
     };
 
     ui.initialize();

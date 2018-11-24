@@ -5,6 +5,7 @@ import {update} from "./updating.js";
 import {splitIntoTiles} from "./game_utils.js";
 
 const WAVE_FREQUENCY = 600;
+const TILE_SIZE = 5;
 
 let game = {
     kills: 0,
@@ -18,6 +19,9 @@ let game = {
     map: MAPS.baseMap,
     tiles: {},
 
+    selection: false,
+
+
     enemies: [],
     turrets: [],
     bullets: [],
@@ -27,9 +31,7 @@ let game = {
         game.widthArea = width;
         game.heightArea = height;
 
-        splitIntoTiles(game.map.map((p) => {
-            return {x: p.x, y: p.y};
-        }), game.tiles, 5);
+        splitIntoTiles(game.map, game.tiles, TILE_SIZE);
 
         game.enemyStart = {
             x: game.map[0].x - ENEMY_SIZE,
@@ -67,6 +69,7 @@ let game = {
 };
 
 export {
+    TILE_SIZE,
     WAVE_FREQUENCY,
     game
 };

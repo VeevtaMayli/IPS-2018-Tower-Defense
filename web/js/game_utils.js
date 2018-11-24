@@ -19,38 +19,36 @@ function splitIntoTiles(map, tiles, tileSize) {
     const halfWidth = PATH_WIDTH / tileSize / 2;
     map.forEach((cur, i, map) => {
         const next = map[i + 1] || cur;
-        let dx = next.x - cur.x;
-        let dy = next.y - cur.y;
+        let x = cur.x;
+        let y = cur.y;
+        let dx = next.x - x;
+        let dy = next.y - y;
 
         if (Math.abs(dx) > Math.abs(dy)) {
             const direction = dy / dx;
-            cur.x += (dx < 0) ? PATH_WIDTH / 2 + 1 : -PATH_WIDTH / 2 - 1;
-            const offset = cur.y - direction * cur.x;
+            const offset = y - direction * x;
             dx = (dx < 0) ? -1 : 1;
 
-            while (cur.x !== next.x) {
-                cur.x += dx;
+            while (x !== next.x) {
+                x += dx;
 
                 for (let j = -halfWidth + 1; j <= halfWidth; j++) {
-                    tiles[Math.round(cur.x / halfWidth) + "," + Math.round((direction * cur.x + offset) / halfWidth + j)] = true;
+                    tiles[Math.round(x / halfWidth) + "," + Math.round((direction * x + offset) / halfWidth + j)] = true;
                 }
             }
         } else if (dy !== 0) {
             const direction = dx / dy;
-            cur.y += (dy < 0) ? PATH_WIDTH / 2 + 1 : -PATH_WIDTH / 2 - 1;
-            const offset = cur.x - direction * cur.y;
+            const offset = x - direction * y;
             dy = (dy < 0) ? -1 : 1;
 
-            while (cur.y !== next.y) {
-                cur.y += dy;
+            while (y !== next.y) {
+                y += dy;
 
                 for (let j = -halfWidth + 1; j <= halfWidth; j++) {
-                    tiles[Math.round((direction * cur.x + offset) / halfWidth + j) + "," + Math.round(cur.x / halfWidth)] = true;
+                    tiles[Math.round((direction * y + offset) / halfWidth + j) + "," + Math.round(y / halfWidth)] = true;
                 }
             }
         }
-
-
     });
 }
 

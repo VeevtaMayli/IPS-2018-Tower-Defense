@@ -61,7 +61,8 @@ let game = {
             map: game.map,
             enemies: game.enemies,
             turrets: game.turrets,
-            bullets: game.bullets
+            bullets: game.bullets,
+            dt: deltaTime
         });
         game.ticks++;
         requestAnimationFrame(game.tick);

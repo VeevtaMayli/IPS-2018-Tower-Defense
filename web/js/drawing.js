@@ -1,7 +1,7 @@
 import {PATH_WIDTH} from "./maps.js";
 import {game} from "./game.js";
 
-function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets}) {
+function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets, dt}) {
     drawMap({ctx, boxWidth, boxHeight, map});
 
     enemies.forEach((enemy) => {
@@ -18,7 +18,7 @@ function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets}) {
     }
 
     bullets.forEach((bullet) => {
-        bullet.drawBullet(ctx);
+        bullet.drawBullet({ctx, dt});
     });
 }
 
@@ -53,7 +53,7 @@ function drawEnemy({ctx, enemy}) {
 }
 
 function drawTurret({ctx, turret}) {
-    ctx.fillStyle = "green";
+    ctx.fillStyle = turret.type === "Laser" ? "green" : "violet";
     ctx.beginPath();
     ctx.arc(turret.x, turret.y, turret.size, 0, Math.PI * 2);
     ctx.fill();

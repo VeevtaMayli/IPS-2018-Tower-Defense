@@ -1,13 +1,13 @@
-import {MAPS} from "./maps.js";
-import {ENEMY_SIZE} from "./enemy.js";
-import {redraw} from "./drawing.js";
-import {update} from "./updating.js";
-import {splitIntoTiles} from "./game_utils.js";
+import {MAPS} from './maps.js';
+import {ENEMY_SIZE} from './enemy.js';
+import {drawMap, redraw} from './drawing.js';
+import {update} from './updating.js';
+import {splitIntoTiles} from './game_utils.js';
 
-const WAVE_FREQUENCY = 600;
+const WAVE_FREQUENCY = 800;
 const TILE_SIZE = 5;
 
-let game = {
+const game = {
     kills: 0,
     ticks: 0,
 
@@ -21,7 +21,6 @@ let game = {
 
     selection: false,
 
-
     enemies: [],
     turrets: [],
     bullets: [],
@@ -31,11 +30,18 @@ let game = {
         game.widthArea = width;
         game.heightArea = height;
 
-        splitIntoTiles(game.map, game.tiles, TILE_SIZE);
+        drawMap({
+            ctx: game.context,
+            boxWidth: game.widthArea,
+            boxHeight: game.heightArea,
+            map: game.map,
+        });
+
+        splitIntoTiles(game.context, game.tiles, TILE_SIZE);
 
         game.enemyStart = {
             x: game.map[0].x - ENEMY_SIZE,
-            y: game.map[0].y
+            y: game.map[0].y,
         };
     },
 
@@ -52,7 +58,7 @@ let game = {
             enemies: game.enemies,
             turrets: game.turrets,
             bullets: game.bullets,
-            dt: deltaTime
+            dt: deltaTime,
         });
         redraw({
             ctx: game.context,
@@ -62,15 +68,15 @@ let game = {
             enemies: game.enemies,
             turrets: game.turrets,
             bullets: game.bullets,
-            dt: deltaTime
+            dt: deltaTime,
         });
         game.ticks++;
         requestAnimationFrame(game.tick);
-    }
+    },
 };
 
 export {
     TILE_SIZE,
     WAVE_FREQUENCY,
-    game
+    game,
 };

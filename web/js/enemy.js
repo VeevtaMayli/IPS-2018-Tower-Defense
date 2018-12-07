@@ -20,9 +20,9 @@ function createEnemies(enemies, count) {
         enemies.push(new Enemy({
             startX: game.enemyStart.x - 40 * i,
             startY: game.enemyStart.y,
-            offset: (Math.random() * 2 - 1) * ((PATH_WIDTH - 2 * ENEMY_SIZE) / 2 - 1) ,
+            offset: (Math.random() * 2 - 1) * ((PATH_WIDTH - 2 * ENEMY_SIZE) / 2 - 1),
             hp: 1,
-            startPoint: 0
+            startPoint: 0,
         }));
     }
 }
@@ -30,5 +30,5 @@ function createEnemies(enemies, count) {
 export {
     ENEMY_SIZE,
     ENEMIES_COUNT,
-    createEnemies
+    createEnemies,
 };

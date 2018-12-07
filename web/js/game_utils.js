@@ -1,4 +1,4 @@
-import {PATH_WIDTH} from "./maps.js";
+import {PATH_COLOR, PATH_BORDER_COLOR} from './maps.js';
 
 function moveToTarget({object, target, dt}) {
     const distanceX = target.x - object.x;
@@ -15,45 +15,35 @@ function inRadius({target, object, radius}) {
     return (Math.pow(object.x - target.x, 2)) + (Math.pow(object.y - target.y, 2)) < radius * radius;
 }
 
-function splitIntoTiles(map, tiles, tileSize) {
-    const halfWidth = PATH_WIDTH / tileSize / 2;
-    map.forEach((cur, i, map) => {
-        const next = map[i + 1] || cur;
-        let x = cur.x;
-        let y = cur.y;
-        let dx = next.x - x;
-        let dy = next.y - y;
+function splitIntoTiles(ctx, tiles, tileSize) {
+    const width = ctx.canvas.width;
+    const height = ctx.canvas.height;
+    const mapData = ctx.getImageData(0, 0, width, height).data;
 
-        if (Math.abs(dx) > Math.abs(dy)) {
-            const direction = dy / dx;
-            const offset = y - direction * x;
-            dx = (dx < 0) ? -1 : 1;
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            let startRGBAByte = 4 * (width * y + x);
+            const pixelColor = 'rgba(' +
+                mapData[startRGBAByte] + ', ' +
+                mapData[++startRGBAByte] + ', ' +
+                mapData[++startRGBAByte] + ', ' +
+                mapData[++startRGBAByte] / 255 +
+            ')';
 
-            while (x !== next.x) {
-                x += dx;
-
-                for (let j = -halfWidth + 1; j <= halfWidth; j++) {
-                    tiles[Math.round(x / halfWidth) + "," + Math.round((direction * x + offset) / halfWidth + j)] = true;
-                }
-            }
-        } else if (dy !== 0) {
-            const direction = dx / dy;
-            const offset = x - direction * y;
-            dy = (dy < 0) ? -1 : 1;
-
-            while (y !== next.y) {
-                y += dy;
-
-                for (let j = -halfWidth + 1; j <= halfWidth; j++) {
-                    tiles[Math.round((direction * y + offset) / halfWidth + j) + "," + Math.round(y / halfWidth)] = true;
-                }
+            const curTile = pxToTile(x, y, tileSize);
+            if (curTile && (pixelColor === PATH_COLOR || pixelColor === PATH_BORDER_COLOR)) {
+                tiles[curTile] = true;
             }
         }
-    });
+    }
+}
+
+function pxToTile(x, y, tileSize) {
+    return Math.floor(x / tileSize) + ', ' + Math.floor(y / tileSize);
 }
 
 export {
     moveToTarget,
     inRadius,
-    splitIntoTiles
+    splitIntoTiles,
 };

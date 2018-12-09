@@ -9,9 +9,9 @@ const LASER_BULLET_LIFETIME = 6;
 const MORTAR_DAMAGE = 50;
 const MORTAR_FREQUENCY = 120;
 const MORTAR_RANGE = 200;
-const MORTAR_BULLET_LIFETIME = 100;
+const MORTAR_BULLET_LIFETIME = Infinity;
 const MORTAR_BULLET_SPEED = 150;
-const MORTAR_SHELL_LIFETIME = 1.5;
+const MORTAR_SHELL_LIFETIME = 10;
 
 const TURRET_SIZE = 20;
 
@@ -62,7 +62,7 @@ const TURRETS = {
             const radius = 25;
 
             bullets.push({
-                drawBullet: ({ctx, dt}) => {
+                drawBullet: function({ctx, dt}) {
                     if (moveToTarget({object: shell, target, dt})) {
                         game.enemies.forEach(function(enemy) {
                             if (inRadius({target: enemy, object: target, radius})) {
@@ -83,7 +83,7 @@ const TURRETS = {
                             lifetime: MORTAR_SHELL_LIFETIME,
                         });
 
-                        return false;
+                        this.lifetime = 1;
                     } else {
                         ctx.fillStyle = '#808080';
                         ctx.fillRect(shell.x - 3, shell.y - 3, 6, 6);

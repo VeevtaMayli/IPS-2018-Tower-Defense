@@ -1,16 +1,24 @@
 import {moveToTarget, inRadius} from './game_utils.js';
 import {game} from './game.js';
 
+const LASER_COST = 15;
 const LASER_DAMAGE = 10;
 const LASER_FREQUENCY = 30;
+const LASER_WIDTH = 2;
+const LASER_COLOR = '#EE82EE';
 const LASER_RANGE = 100;
 const LASER_BULLET_LIFETIME = 6;
 
+const MORTAR_COST = 60;
 const MORTAR_DAMAGE = 50;
 const MORTAR_FREQUENCY = 120;
 const MORTAR_RANGE = 200;
+const MORTAR_BULLET_SIZE = 3;
 const MORTAR_BULLET_LIFETIME = Infinity;
 const MORTAR_BULLET_SPEED = 150;
+const MORTAR_BULLET_COLOR = '#808080';
+const MORTAR_SHELL_MIN_RADIUS = 25;
+const MORTAR_SHELL_COLOR = '#FF0';
 const MORTAR_SHELL_LIFETIME = 10;
 
 const TURRET_SIZE = 20;
@@ -18,6 +26,7 @@ const TURRET_SIZE = 20;
 const TURRETS = {
     Laser: {
         typeName: 'Laser',
+        cost: LASER_COST,
         damage: LASER_DAMAGE,
         rate: LASER_FREQUENCY,
         range: LASER_RANGE,
@@ -31,8 +40,8 @@ const TURRETS = {
             bullets.push({
                 drawBullet: ({ctx, dt}) => {
                     ctx.lineCap = 'round';
-                    ctx.lineWidth = 2;
-                    ctx.strokeStyle = '#EE82EE';
+                    ctx.lineWidth = LASER_WIDTH;
+                    ctx.strokeStyle = LASER_COLOR;
                     ctx.beginPath();
                     ctx.moveTo(turret.x, turret.y);
                     ctx.lineTo(enemy.x, enemy.y);
@@ -44,6 +53,7 @@ const TURRETS = {
     },
     Mortar: {
         typeName: 'Mortar',
+        cost: MORTAR_COST,
         damage: MORTAR_DAMAGE,
         rate: MORTAR_FREQUENCY,
         range: MORTAR_RANGE,
@@ -59,12 +69,12 @@ const TURRETS = {
                 y: turret.y,
                 speed: MORTAR_BULLET_SPEED,
             };
-            const radius = 25;
+            const radius = MORTAR_SHELL_MIN_RADIUS;
 
             bullets.push({
                 drawBullet: function({ctx, dt}) {
                     if (moveToTarget({object: shell, target, dt})) {
-                        game.enemies.forEach(function(enemy) {
+                        game.enemies.id.forEach(function(enemy) {
                             if (inRadius({target: enemy, object: target, radius})) {
                                 if ((enemy.hp -= turret.damage) <= 0) {
                                     turret.kills++;
@@ -74,7 +84,7 @@ const TURRETS = {
 
                         bullets.push({
                             drawBullet: ({ctx, dt}) => {
-                                ctx.fillStyle = '#FF0';
+                                ctx.fillStyle = MORTAR_SHELL_COLOR;
                                 ctx.beginPath();
                                 ctx.moveTo(target.x, target.y);
                                 ctx.arc(target.x, target.y, radius, 0, Math.PI * 2);
@@ -85,8 +95,9 @@ const TURRETS = {
 
                         this.lifetime = 1;
                     } else {
-                        ctx.fillStyle = '#808080';
-                        ctx.fillRect(shell.x - 3, shell.y - 3, 6, 6);
+                        const size = MORTAR_BULLET_SIZE;
+                        ctx.fillStyle = MORTAR_BULLET_COLOR;
+                        ctx.fillRect(shell.x - size, shell.y - size, 2 * size, 2 * size);
                     }
                 },
                 lifetime: MORTAR_BULLET_LIFETIME,
@@ -100,6 +111,7 @@ function Turret({type, id, x, y}) {
     this.type = type.typeName;
     this.x = x;
     this.y = y;
+    this.cost = type.cost;
     this.size = TURRET_SIZE;
     this.damage = type.damage;
     this.rate = type.rate;

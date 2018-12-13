@@ -1,5 +1,5 @@
 import {MAPS} from './maps.js';
-import {ENEMY_SIZE} from './enemy.js';
+import {ENEMY_SIZE, ENEMY_START_HP, ENEMY_HP_COEF} from './enemy.js';
 import {drawMap, redraw} from './drawing.js';
 import {update} from './updating.js';
 import {splitIntoTiles} from './game_utils.js';
@@ -9,11 +9,11 @@ const TILE_SIZE = 5;
 
 const game = {
     kills: 0,
-    ticks: 0,
+    cash: 35,
 
+    ticks: 0,
     wave: 0,
     lastWave: 0,
-
     lastTimestamp: Date.now(),
 
     map: MAPS.baseMap,
@@ -21,7 +21,12 @@ const game = {
 
     selection: false,
 
-    enemies: [],
+    enemies: {
+        id: [],
+        hp: ENEMY_START_HP,
+        hpMultiplier: ENEMY_HP_COEF[1],
+    },
+
     turrets: [],
     bullets: [],
 
@@ -55,7 +60,7 @@ const game = {
         // });
         update({
             map: game.map,
-            enemies: game.enemies,
+            enemies: game.enemies.id,
             turrets: game.turrets,
             bullets: game.bullets,
             dt: deltaTime,
@@ -65,7 +70,7 @@ const game = {
             boxWidth: game.widthArea,
             boxHeight: game.heightArea,
             map: game.map,
-            enemies: game.enemies,
+            enemies: game.enemies.id,
             turrets: game.turrets,
             bullets: game.bullets,
             dt: deltaTime,

@@ -4,6 +4,8 @@ import {TILE_SIZE, WAVE_FREQUENCY, game} from './game.js';
 const ui = {
     buyControls: document.getElementById('turrets_buy_controls'),
     waveStarter: document.getElementById('wave_starter'),
+    cash: document.getElementById('cash_indicator'),
+    wave: document.getElementById('wave_indicator'),
     canvas: document.getElementById('canvas'),
 
     bind: (event, elements, func) => {
@@ -20,14 +22,18 @@ const ui = {
                 y: -1000,
             });
 
-            game.selection = {
+            game.selection = game.cash - turret.cost >= 0 ? {
                 status: 'placing',
                 turret: turret,
                 placeable: false,
-            };
+            } : false;
         },
         deselect: () => {
             game.selection = false;
+        },
+        refresh: () => {
+            ui.cash.textContent = game.cash;
+            ui.wave.textContent = game.wave;
         },
     },
     initialize: () => {
@@ -79,6 +85,7 @@ const ui = {
 
             if (selection.status === 'placing') {
                 if (selection.placeable) {
+                    game.cash -= turret.cost;
                     game.turrets.push(turret);
 
                     const xTile = (turret.x - TILE_SIZE / 2) / TILE_SIZE;
@@ -92,6 +99,7 @@ const ui = {
                 }
 
                 game.selection = false;
+                ui.action.refresh();
             } else {
                 ui.action.deselect();
             }

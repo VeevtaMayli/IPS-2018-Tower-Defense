@@ -1,93 +1,80 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" type="image/png" href="./img/favicon.png" >
-    <title>Tower Defense</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
     <style>
-        html,
-        body
-        {
+        body{
             margin: 0;
             padding: 0;
-            height: 100%;
-        }
-        .game-container
-        {
-            background: black;
-            width: 800px;
-            height: 600px;
-            margin: 0 calc((100% - 800px) / 2);
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: limegreen url("img/background.jpg");
+            background-size: 100%;
+            color: #00000F;
         }
-        .game-controls
+
+        .game-logo
         {
-            width: 800px;
-            height: 45px;
-            margin: 0 calc((100% - 800px) / 2);
+            margin: 30px 0;
         }
-        .panel__left
+
+        .game-example
         {
-            float: left;
+            margin-bottom: 20px;
         }
-        .panel__right
+
+        .form-item
         {
-            float: right;
-        }
-        .turret-cart
-        {
-            display: inline-block;
-            width: 90px;
-            border: black 1px solid;
-            cursor: pointer;
-            float: left;
-        }
-        .wave-starter
-        {
-            background-color: #0F0;
-            display: block;
-            height: 20px;
-            margin-bottom: 2px;
-            width: 20px;
-            cursor: pointer;
+            margin-bottom: 10px;
         }
     </style>
+
+    <title>Tower Defense</title>
 </head>
 <body>
-    <div id="game_pages" class="game-container">
-        <canvas id="canvas" width=800 height=600></canvas>
-    </div>
-    <div id="game_control_panel" class="game-controls">
-        <div id="left_control_panel" class="panel__left">
-            <div id="turrets_buy_controls">
-                <a data-name="Laser" class="turret-cart">
-                    <img src="#" class="turret-cart__image">
-                    <div class="turret-cart__description">Laser ($15)</div>
-                </a>
-                <a data-name="Mortar" class="turret-cart">
-                    <img src="#" class="turret-cart__image">
-                    <div class="turret-cart__description">Mortar ($60)</div>
-                </a>
-            </div>
-            <div id="turrets_manage_controls">
-
+    <div class="container container-fluid">
+        <div class="row">
+            <div class="col text-center">
+                <img class="img-fluid game-logo" src="img/logo.png" alt="Tower Defense">
             </div>
         </div>
-        <div id="right_control_panel" class="panel__right">
-            <div id="time_manage_panel">
-                <a id="wave_starter" class="button wave-starter"></a>
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="row">
+                    <div class="col text-center">
+                        <img class="img-fluid game-example" src="img/game_example.png" alt="Game example">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta sed erat non dignissim. Phasellus euismod varius nulla, et fringilla erat commodo a. Pellentesque vehicula eleifend ante, quis luctus velit consequat at. Sed nec auctor lacus. Praesent rhoncus tellus nisl, in porttitor leo finibus quis. Fusce cursus nisl a hendrerit convallis. Duis tempor risus id vulputate mollis. Vestibulum egestas elit arcu, sed auctor sem dapibus id.
+                    </div>
+                </div>
             </div>
-            <div id="counter_panel">
-                Cash $<span id="cash_indicator">35</span>
-                Wave #<span id="wave_indicator">0</span>
-            </div>
-            <div id="session_panel">
-
+            <div class="col-sm-4">
+                <form action="#" method="post">
+                    <div form-row>
+                        <div class="form-group">
+                            <label class="sr-only" for="login">Login</label>
+                            <input type="text" class="form-control form-item" id="login" name="login" placeholder="Username" required>
+                            <label class="sr-only" for="password">Password</label>
+                            <input type="password" class="form-control form-item" id="password" name="password" placeholder="Password" required>
+                            <button id="login_button" type="button" class="btn btn-dark btn-block form-item">К защите!</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    <script type="module" src="./js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
 </body>
 </html>

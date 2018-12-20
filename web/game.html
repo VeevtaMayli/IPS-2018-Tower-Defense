@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="icon" type="image/png" href="./img/favicon.png">
+
+    <title>Tower Defense</title>
+    <style>
+        html,
+        body
+        {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .game-container
+        {
+            background: black;
+            width: 800px;
+            height: 600px;
+            margin: 0 calc((100% - 800px) / 2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .game-controls
+        {
+            width: 800px;
+            height: 45px;
+            margin: 0 calc((100% - 800px) / 2);
+        }
+        .panel__left
+        {
+            float: left;
+        }
+        .panel__right
+        {
+            float: right;
+        }
+        .turret-cart
+        {
+            display: inline-block;
+            width: 90px;
+            border: black 1px solid;
+            cursor: pointer;
+            float: left;
+        }
+        .wave-starter
+        {
+            background-color: #0F0;
+            display: block;
+            height: 20px;
+            margin-bottom: 2px;
+            width: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div id="game_pages" class="game-container">
+        <canvas id="canvas" width=800 height=600></canvas>
+    </div>
+    <div id="game_control_panel" class="game-controls">
+        <div id="left_control_panel" class="panel__left">
+            <div id="turrets_buy_controls">
+                <a data-name="Laser" class="turret-cart">
+                    <img src="#" class="turret-cart__image">
+                    <div class="turret-cart__description">Laser ($15)</div>
+                </a>
+                <a data-name="Mortar" class="turret-cart">
+                    <img src="#" class="turret-cart__image">
+                    <div class="turret-cart__description">Mortar ($60)</div>
+                </a>
+            </div>
+            <div id="turrets_manage_controls">
+
+            </div>
+        </div>
+        <div id="right_control_panel" class="panel__right">
+            <div id="time_manage_panel">
+                <a id="wave_starter" class="button wave-starter"></a>
+            </div>
+            <div id="counter_panel">
+                Cash $<span id="cash_indicator">35</span>
+                Wave #<span id="wave_indicator">0</span>
+            </div>
+            <div id="session_panel">
+
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    <script src="./js/main.js" type="module"></script>
+</body>
+</html>

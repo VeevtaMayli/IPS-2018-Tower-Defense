@@ -10,5 +10,5 @@ import {game} from './game.js';
 
     ui.initialize();
     game.initialize(gameArea);
-    game.tick();
+    game.start();
 })();

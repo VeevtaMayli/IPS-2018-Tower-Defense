@@ -1,7 +1,7 @@
 import {WAVE_FREQUENCY, game} from './game.js';
 import {inRadius, moveToTarget} from './game_utils.js';
 import {createEnemies, ENEMIES_COUNT} from './enemy.js';
-import {ui} from "./interface.js";
+import {ui} from './interface.js';
 
 function update({map, enemies, turrets, bullets, dt}) {
     if (game.lastWave + WAVE_FREQUENCY === game.ticks) {
@@ -18,8 +18,12 @@ function update({map, enemies, turrets, bullets, dt}) {
             ui.action.refresh();
             delete enemiesArr[i];
         } else if (enemy.nextPoint === map.length) {
-            console.log('[', i, '] прошел до конца!');
             delete enemiesArr[i];
+            ui.life.textContent = --game.lives;
+
+            if (game.lives === 0) {
+                game.end();
+            }
         } else {
             const wayPoint = map[enemy.nextPoint];
             if (moveToTarget({

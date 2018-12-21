@@ -6,15 +6,19 @@ import {splitIntoTiles} from './game_utils.js';
 
 const WAVE_FREQUENCY = 800;
 const TILE_SIZE = 5;
+const START_CASH = 35;
+const START_LIVES = 10;
 
 const game = {
     kills: 0,
-    cash: 35,
+    cash: START_CASH,
+    lives: START_LIVES,
 
     ticks: 0,
     wave: 0,
     lastWave: 0,
     lastTimestamp: Date.now(),
+    paused: true,
 
     map: MAPS.baseMap,
     tiles: {},
@@ -53,7 +57,6 @@ const game = {
             y: game.map[0].y,
         };
     },
-
     tick: () => {
         const currentTimeStamp = Date.now();
         const deltaTime = (currentTimeStamp - game.lastTimestamp) * 0.001; //сколько секунд прошло с прошлого кадра
@@ -80,7 +83,24 @@ const game = {
             dt: deltaTime,
         });
         game.ticks++;
-        requestAnimationFrame(game.tick);
+
+        if (!game.paused) {
+            requestAnimationFrame(game.tick);
+        }
+    },
+    start: () => {
+        game.paused = false;
+        game.lastTimestamp = Date.now();
+        game.tick();
+        return 'Pause';
+    },
+    pause: () => {
+        game.paused = true;
+        return 'Start';
+    },
+    end: () => {
+        game.pause();
+        console.log("Конец игры!");
     },
 };
 

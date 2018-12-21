@@ -8,8 +8,10 @@ const ui = {
         Mortar: document.getElementById('mortar_image'),
     },
     waveStarter: document.getElementById('wave_starter'),
+    pauseControl: document.getElementById('pause_controller'),
     cash: document.getElementById('cash_indicator'),
     wave: document.getElementById('wave_indicator'),
+    life: document.getElementById('life_indicator'),
     canvas: document.getElementById('canvas'),
 
     bind: (event, elements, func) => {
@@ -42,11 +44,19 @@ const ui = {
     },
     initialize: () => {
         ui.bind('click', ui.buyControls.children, function() {
-            ui.action.build(this.dataset.name);
+            if (!game.paused) {
+                ui.action.build(this.dataset.name);
+            }
         });
 
         ui.waveStarter.addEventListener('click', () => {
-            game.lastWave = game.ticks - WAVE_FREQUENCY;
+            if (!game.paused) {
+                game.lastWave = game.ticks - WAVE_FREQUENCY;
+            }
+        });
+
+        ui.pauseControl.addEventListener('click', function() {
+            this.textContent = game.paused ? game.start() : game.pause();
         });
 
         ui.canvas.addEventListener('mousemove', function(event) {

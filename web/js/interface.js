@@ -3,6 +3,10 @@ import {TILE_SIZE, WAVE_FREQUENCY, game} from './game.js';
 
 const ui = {
     buyControls: document.getElementById('turrets_buy_controls'),
+    turretImages: {
+        Laser: document.getElementById('laser_image'),
+        Mortar: document.getElementById('mortar_image'),
+    },
     waveStarter: document.getElementById('wave_starter'),
     cash: document.getElementById('cash_indicator'),
     wave: document.getElementById('wave_indicator'),
@@ -52,8 +56,8 @@ const ui = {
             if (selection) {
                 const turretInTiles = Math.floor(turret.size / TILE_SIZE);
 
-                const xTile = Math.floor((event.pageX - this.offsetLeft) / TILE_SIZE);
-                const yTile = Math.floor((event.pageY - this.offsetTop) / TILE_SIZE);
+                const xTile = Math.floor((event.pageX - this.offsetParent.offsetLeft - this.offsetLeft) / TILE_SIZE);
+                const yTile = Math.floor((event.pageY - this.offsetParent.offsetTop - this.offsetTop) / TILE_SIZE);
 
                 turret.x = xTile * TILE_SIZE;
                 turret.y = yTile * TILE_SIZE;

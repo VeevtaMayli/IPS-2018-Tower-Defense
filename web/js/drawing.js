@@ -1,5 +1,6 @@
 import {PATH_WIDTH, PATH_BORDER_WIDTH, PATH_COLOR, PATH_BORDER_COLOR} from './maps.js';
 import {game} from './game.js';
+import {ui} from './interface.js';
 
 function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets, dt}) {
     drawMap({ctx, boxWidth, boxHeight, map});
@@ -23,7 +24,7 @@ function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets, dt}) 
 }
 
 function drawMap({ctx, boxWidth, boxHeight, map}) {
-    ctx.fillStyle = '#000';
+    ctx.fillStyle = 'rgba(153, 178, 22, 1)';
     ctx.fillRect(0, 0, boxWidth, boxHeight);
     const start = map[0];
     ctx.strokeStyle = PATH_BORDER_COLOR;
@@ -46,17 +47,12 @@ function drawMap({ctx, boxWidth, boxHeight, map}) {
 }
 
 function drawEnemy({ctx, enemy}) {
-    ctx.fillStyle = 'red';
-    ctx.beginPath();
-    ctx.arc(enemy.x, enemy.y, enemy.size, 0, Math.PI * 2);
-    ctx.fill();
+    const size = enemy.size;
+    ctx.drawImage(game.enemies.img, enemy.x - size / 2, enemy.y - size / 2, size, size);
 }
 
 function drawTurret({ctx, turret}) {
-    ctx.fillStyle = turret.type === 'Laser' ? 'green' : 'violet';
-    ctx.beginPath();
-    ctx.arc(turret.x, turret.y, turret.size, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.drawImage(ui.turretImages[turret.type], turret.x - turret.size, turret.y - turret.size, 2 * turret.size, 2 * turret.size);
 }
 
 function drawTurretArea({ctx, turret}) {

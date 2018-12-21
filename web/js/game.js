@@ -1,5 +1,5 @@
 import {MAPS} from './maps.js';
-import {ENEMY_SIZE, ENEMY_START_HP, ENEMY_HP_COEF} from './enemy.js';
+import {ENEMY_SIZE, ENEMY_START_HP, ENEMY_HP_COEF, ENEMY_IMAGE} from './enemy.js';
 import {drawMap, redraw} from './drawing.js';
 import {update} from './updating.js';
 import {splitIntoTiles} from './game_utils.js';
@@ -25,6 +25,7 @@ const game = {
         id: [],
         hp: ENEMY_START_HP,
         hpMultiplier: ENEMY_HP_COEF[1],
+        img: null,
     },
 
     turrets: [],
@@ -41,6 +42,9 @@ const game = {
             boxHeight: game.heightArea,
             map: game.map,
         });
+
+        game.enemies.img = new Image();
+        game.enemies.img.src = ENEMY_IMAGE;
 
         splitIntoTiles(game.context, game.tiles, TILE_SIZE);
 

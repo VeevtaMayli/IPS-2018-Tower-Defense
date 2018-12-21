@@ -4,10 +4,11 @@ import {game} from './game.js';
 const LASER_COST = 15;
 const LASER_DAMAGE = 10;
 const LASER_FREQUENCY = 30;
-const LASER_WIDTH = 2;
+const LASER_WIDTH = 5;
 const LASER_COLOR = '#EE82EE';
 const LASER_RANGE = 100;
 const LASER_BULLET_LIFETIME = 6;
+const LASER_SIZE = 20;
 
 const MORTAR_COST = 60;
 const MORTAR_DAMAGE = 50;
@@ -20,8 +21,7 @@ const MORTAR_BULLET_COLOR = '#808080';
 const MORTAR_SHELL_MIN_RADIUS = 25;
 const MORTAR_SHELL_COLOR = '#FF0';
 const MORTAR_SHELL_LIFETIME = 10;
-
-const TURRET_SIZE = 20;
+const MORTAR_SIZE = 25;
 
 const TURRETS = {
     Laser: {
@@ -30,6 +30,7 @@ const TURRETS = {
         damage: LASER_DAMAGE,
         rate: LASER_FREQUENCY,
         range: LASER_RANGE,
+        size: LASER_SIZE,
         shoot: function({enemies, bullets}) {
             const enemy = enemies[0];
             const turret = this;
@@ -57,6 +58,7 @@ const TURRETS = {
         damage: MORTAR_DAMAGE,
         rate: MORTAR_FREQUENCY,
         range: MORTAR_RANGE,
+        size: MORTAR_SIZE,
         shoot: function({enemies, bullets}) {
             const enemy = enemies[0];
             const turret = this;
@@ -112,7 +114,7 @@ function Turret({type, id, x, y}) {
     this.x = x;
     this.y = y;
     this.cost = type.cost;
-    this.size = TURRET_SIZE;
+    this.size = type.size;
     this.damage = type.damage;
     this.rate = type.rate;
     this.range = type.range;

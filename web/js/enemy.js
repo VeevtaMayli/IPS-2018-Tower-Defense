@@ -11,12 +11,13 @@ const ENEMY_HP_COEF = {
     200: 1.01,
 };
 
-const ENEMY_SIZE = 9;
+const ENEMY_SIZE = 30;
 //const ENEMY_START_COST = 2;
 const ENEMY_SPEED = 90;
 const ENEMY_DISTANCE = 40;
 const ENEMIES_COUNT = 10;
 const ENEMY_START_HP = 1;
+const ENEMY_IMAGE = 'img/chicken.png';
 
 function Enemy({startX, startY, offset, hp, cost, startPoint}) {
     this.x = startX;
@@ -50,5 +51,6 @@ export {
     ENEMIES_COUNT,
     ENEMY_START_HP,
     ENEMY_HP_COEF,
+    ENEMY_IMAGE,
     createEnemies,
 };

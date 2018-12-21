@@ -14,81 +14,92 @@
         {
             margin: 0;
             padding: 0;
-            height: 100%;
-        }
-        .game-container
-        {
-            background: black;
-            width: 800px;
-            height: 600px;
-            margin: 0 calc((100% - 800px) / 2);
+            width: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
+            background: limegreen url("img/background.png") fixed;
+            color: #00000F;
+            line-height: 0;
         }
-        .game-controls
+        .game-container
         {
-            width: 800px;
-            height: 45px;
-            margin: 0 calc((100% - 800px) / 2);
-        }
-        .panel__left
-        {
-            float: left;
-        }
-        .panel__right
-        {
-            float: right;
+            width: 830px;
         }
         .turret-cart
         {
-            display: inline-block;
-            width: 90px;
-            border: black 1px solid;
+            padding-top: 20px;
             cursor: pointer;
-            float: left;
         }
-        .wave-starter
+        .turret-cart__image
         {
-            background-color: #0F0;
-            display: block;
-            height: 20px;
-            margin-bottom: 2px;
-            width: 20px;
-            cursor: pointer;
+            height: 50px;
+
+        }
+        .laser-image
+        {
+            width: 45px;
+        }
+        .mortar-image
+        {
+            width: 59px;
+        }
+        .indicator
+        {
+            padding-top: 1.1rem;
+            padding-bottom: 1.1rem;
         }
     </style>
 </head>
 <body>
-    <div id="game_pages" class="game-container">
-        <canvas id="canvas" width=800 height=600></canvas>
-    </div>
-    <div id="game_control_panel" class="game-controls">
-        <div id="left_control_panel" class="panel__left">
-            <div id="turrets_buy_controls">
-                <a data-name="Laser" class="turret-cart">
-                    <img src="#" class="turret-cart__image">
-                    <div class="turret-cart__description">Laser ($15)</div>
-                </a>
-                <a data-name="Mortar" class="turret-cart">
-                    <img src="#" class="turret-cart__image">
-                    <div class="turret-cart__description">Mortar ($60)</div>
-                </a>
-            </div>
-            <div id="turrets_manage_controls">
-
+    <div class="container container-fluid game-container">
+        <div class="row">
+            <div id="game_pages" class="col">
+                <canvas id="canvas" width="800" height="600"></canvas>
             </div>
         </div>
-        <div id="right_control_panel" class="panel__right">
-            <div id="time_manage_panel">
-                <a id="wave_starter" class="button wave-starter"></a>
-            </div>
-            <div id="counter_panel">
-                Cash $<span id="cash_indicator">35</span>
-                Wave #<span id="wave_indicator">0</span>
-            </div>
-            <div id="session_panel">
+        <div id="game_control_panel" class="row justify-content-between no-gutters">
+            <div id="left_control_panel" class="col-8">
+                <div id="turrets_buy_controls" class="card-group">
+                    <div data-name="Laser" class="card text-center bg-light border-success turret-cart">
+                        <img src="img/frog.png" class="card-image-top mx-auto turret-cart__image laser-image" id="laser_image" alt="Laser">
+                        <div class="card-body text-success">
+                            <p class="card-text">Laser ($15)</p>
+                        </div>
+                    </div>
+                    <div data-name="Mortar" class="card text-center bg-light border-success turret-cart">
+                        <img src="img/elephant.png" class="card-image-top mx-auto turret-cart__image mortar-image" id="mortar_image" alt="Mortar">
+                        <div class="card-body text-success">
+                            <p class="card-text">Mortar ($60)</p>
+                        </div>
+                    </div>
+                </div>
+                <div id="turrets_manage_controls"><!--class="row"-->
 
+                </div>
+            </div>
+            <div id="right_control_panel" class="col-4">
+                <div class="row no-gutters">
+                    <div id="time_manage_panel" class="col-4">
+                        <div class="btn-group-vertical" role="group" aria-label="Time management controls">
+                            <button id="wave_starter" type="button" class="btn bg-light border-success text-success">Wave</button>
+                            <button id="pause_controller" type="button" class="btn bg-light border-success text-success">Pause</button>
+                            <button id="rate_controller" type="button" class="btn bg-light border-success text-success">Faster</button>
+                        </div>
+                    </div>
+                    <div id="counter_panel" class="col-6">
+                        <div class="card">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item bg-light border-success text-success indicator">Cash $<span id="cash_indicator">35</span></li>
+                                <li class="list-group-item bg-light border-success text-success indicator">Wave #<span id="wave_indicator">0</span></li>
+                                <li class="list-group-item bg-light border-success text-success indicator">Lives ♥<span id="life_indicator">10</span></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="session_panel" class="col-2">
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

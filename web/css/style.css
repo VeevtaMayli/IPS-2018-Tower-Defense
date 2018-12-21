@@ -1,0 +1,34 @@
+body{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: limegreen url("../img/background.png") fixed;
+    color: #00000F;
+}
+.about-game
+{
+    margin-bottom: 30px;
+}
+
+.game-logo
+{
+    margin: 30px 0;
+}
+
+.game-example
+{
+    margin-bottom: 20px;
+}
+
+.input-form
+{
+    margin-bottom: 60px;
+}
+
+.form-item
+{
+    margin-bottom: 10px;
+}

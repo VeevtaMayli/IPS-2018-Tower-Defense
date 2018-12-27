@@ -13,11 +13,11 @@ const ENEMY_HP_COEF = {
 
 const ENEMY_SIZE = 30;
 //const ENEMY_START_COST = 2;
-const ENEMY_SPEED = 190;
+const ENEMY_SPEED = 90;
 const ENEMY_DISTANCE = 40;
 const ENEMIES_COUNT = 10;
 const ENEMY_START_HP = 1;
-const ENEMY_IMAGE = 'img/chicken.png';
+const ENEMY_IMAGE = 'web/img/chicken.png';
 
 function Enemy({startX, startY, offset, hp, cost, startPoint}) {
     this.x = startX;

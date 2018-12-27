@@ -1,0 +1,39 @@
+{% extends "layout.twig" %}
+
+{% block title %}Records{% endblock %}
+
+{% block header %}
+    <div class="row text-center">
+        <div class="col">
+            <h2 class="text-dark menu-title">RECORDS</h2>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <table class="table col-sm-8 offset-sm-2 text-dark">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Username</th>
+                <th>Date</th>
+                <th>Scores</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in records %}
+                <tr>
+                    <th scope="row">{{ item.position }}</th>
+                    <td>{{ item.username }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.score }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <button type="button" class="btn btn-light border-success text-success btn-block menu-button col-sm-2 offset-sm-2">Back</button>
+    </div>
+{% endblock %}

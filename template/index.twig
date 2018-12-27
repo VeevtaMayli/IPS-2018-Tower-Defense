@@ -1,0 +1,52 @@
+{% extends "layout.twig" %}
+
+{% block title %}Welcome, Defender!{% endblock %}
+
+{% block header %}
+    <div class="row">
+        <div class="col text-center">
+            <img class="img-fluid game-logo" src="web/img/logo.png" alt="Tower Defense">
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-8 order-sm-1 order-2 about-game">
+            <div class="row">
+                <div class="col text-center">
+                    <img class="img-fluid game-example" src="web/img/game_example.png" alt="Game example">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta sed erat non dignissim. Phasellus euismod varius nulla, et fringilla erat commodo a. Pellentesque vehicula eleifend ante, quis luctus velit consequat at. Sed nec auctor lacus. Praesent rhoncus tellus nisl, in porttitor leo finibus quis. Fusce cursus nisl a hendrerit convallis. Duis tempor risus id vulputate mollis. Vestibulum egestas elit arcu, sed auctor sem dapibus id.
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 order-sm-2 order-1">
+            <form class="input-form" action="#" method="post">
+                <div form-row>
+                    <div class="form-group">
+                        <label class="sr-only" for="login">Login</label>
+                        <input type="text" class="form-control form-item" id="login" name="login" placeholder="Username" required>
+                        <label class="sr-only" for="password">Password</label>
+                        <input type="password" class="form-control form-item" id="password" name="password" placeholder="Password" required>
+                        <button id="login_button" type="button" class="btn btn-dark btn-block form-item">К защите!</button>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class="col">
+                    <h2>Описание управления</h2>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta sed erat non dignissim. Phasellus euismod varius nulla, et fringilla erat commodo a. Pellentesque vehicula eleifend ante, quis luctus velit consequat at. Sed nec auctor lacus. Praesent rhoncus tellus nisl, in porttitor leo finibus quis. Fusce cursus nisl a hendrerit convallis. Duis tempor risus id vulputate mollis. Vestibulum egestas elit arcu, sed auctor sem dapibus id.
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    {% include "script.twig" %}
+{% endblock %}

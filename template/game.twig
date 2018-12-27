@@ -1,0 +1,76 @@
+{% extends "layout.twig" %}
+
+{% block title %}Tower Defense{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div id="game_pages" class="col">
+            <canvas id="canvas" width="800" height="600"></canvas>
+        </div>
+    </div>
+    <div id="game_control_panel" class="row justify-content-between no-gutters">
+        <div id="left_control_panel" class="col-lg-6">
+            <div id="turrets_buy_controls" class="card-group">
+                <div data-name="Laser" class="card text-center bg-light border-success turret-cart">
+                    <img src="web/img/frog.png" class="card-image-top mx-auto turret-cart__image laser-image" id="update1" alt="Laser">
+                    <div class="card-body text-success">
+                        <p class="card-text">Laser ($15)</p>
+                    </div>
+                </div>
+                <div data-name="Mortar" class="card text-center bg-light border-success turret-cart">
+                    <img src="web/img/elephant.png" class="card-image-top mx-auto turret-cart__image mortar-image" id="update2" alt="Mortar">
+                    <div class="card-body text-success">
+                        <p class="card-text">Mortar ($60)</p>
+                    </div>
+                </div>
+            </div>
+            <div id="turrets_manage_controls" class="card-group d-none">
+                <!--<div data-name="Laser" class="card text-center bg-light border-success turret-cart">
+                    <img src="web/img/frog.png" class="card-image-top mx-auto turret-cart__image laser-image" id="laser_image" alt="Laser">
+                    <div class="card-body text-success">
+                        <p class="card-text">Update ($15)</p>
+                    </div>
+                </div>
+                <div data-name="Mortar" class="card text-center bg-light border-success turret-cart">
+                    <img src="web/img/elephant.png" class="card-image-top mx-auto turret-cart__image mortar-image" id="mortar_image" alt="Mortar">
+                    <div class="card-body text-success">
+                        <p class="card-text">Move ($60)</p>
+                    </div>
+                </div>-->
+            </div>
+        </div>
+        <div id="right_control_panel" class="col-lg-6">
+            <div class="card-group">
+                <div class="card text-center bg-light border-success">
+                    <div class="card-body px-1 py-0">
+                        <div class="btn-group-vertical" role="group" aria-label="Time management controls">
+                            <button id="wave_starter" type="button" class="btn btn-light text-success px-4">Wave</button>
+                            <button id="pause_controller" type="button" class="btn btn-light text-success px-4">Pause</button>
+                            <button id="rate_controller" type="button" class="btn btn-light text-success px-4">Faster</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center bg-light border-success">
+                    <div class="card-body text-success px-1 py-0">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item bg-light border-success text-success indicator">Cash $<span id="cash_indicator">35</span></li>
+                            <li class="list-group-item bg-light border-success text-success indicator">Wave #<span id="wave_indicator">0</span></li>
+                            <li class="list-group-item bg-light border-success text-success indicator">Lives ♥<span id="life_indicator">10</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="card text-center bg-light border-success">
+                    <div class="card-body px-1">
+                        <button id="exit" type="button" class="btn btn-light text-success px-4 py-3 my-1">Menu</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    {% include "script.twig" %}
+    <script src="web/js/main.js" type="module"></script>
+{% endblock %}

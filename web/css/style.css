@@ -1,4 +1,6 @@
-body{
+body,
+html
+{
     margin: 0;
     padding: 0;
     width: 100%;
@@ -8,6 +10,7 @@ body{
     background: limegreen url("../img/background.png") fixed;
     color: #00000F;
 }
+
 .about-game
 {
     margin-bottom: 30px;
@@ -31,4 +34,48 @@ body{
 .form-item
 {
     margin-bottom: 10px;
+}
+
+.game-container
+{
+    width: 830px;
+    line-height: 0;
+}
+
+.turret-cart
+{
+    padding-top: 22px;
+    cursor: pointer;
+}
+
+.turret-cart__image
+{
+    height: 50px;
+
+}
+
+.laser-image
+{
+    width: 45px;
+}
+
+.mortar-image
+{
+    width: 59px;
+}
+
+.indicator
+{
+    padding-top: 1.1rem;
+    padding-bottom: 1.1rem;
+}
+
+.menu-title
+{
+    margin: 30px;
+}
+
+.menu-button
+{
+    margin-bottom: 20px;
 }

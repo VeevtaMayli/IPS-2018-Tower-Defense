@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="ru">
+{% include "head.twig" %}
+{% block head %}
+{% endblock %}
+<body>
+<div class="container container-fluid {{ gameContainer }}">
+
+    {% block header %}
+    {% endblock %}
+
+    {% block content %}
+    {% endblock %}
+
+</div>
+{% block script %}
+{% endblock %}
+</body>
+</html>

@@ -19,34 +19,39 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col text-dark">
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta sed erat non dignissim. Phasellus euismod varius nulla, et fringilla erat commodo a. Pellentesque vehicula eleifend ante, quis luctus velit consequat at. Sed nec auctor lacus. Praesent rhoncus tellus nisl, in porttitor leo finibus quis. Fusce cursus nisl a hendrerit convallis. Duis tempor risus id vulputate mollis. Vestibulum egestas elit arcu, sed auctor sem dapibus id.
                 </div>
             </div>
         </div>
         <div class="col-sm-4 order-sm-2 order-1">
-            <form class="input-form" action="#" method="post">
+            <form class="input-form">
                 <div form-row>
                     <div class="form-group">
                         <label class="sr-only" for="login">Login</label>
-                        <input type="text" class="form-control form-item" id="login" name="login" placeholder="Username" required>
+                        <input type="text" class="form-control form-item border-success text-success" id="login" name="login" placeholder="Username" required>
                         <label class="sr-only" for="password">Password</label>
-                        <input type="password" class="form-control form-item" id="password" name="password" placeholder="Password" required>
-                        <button id="login_button" type="button" class="btn btn-dark btn-block form-item">К защите!</button>
+                        <input type="password" class="form-control border-success text-success form-item" id="password" name="password" placeholder="Password" required>
+                        <button id="login_button" type="button" class="btn btn-success border-light btn-block form-item">К защите!</button>
                     </div>
                 </div>
             </form>
             <div class="row">
-                <div class="col">
+                <div class="col text-dark">
                     <h2>Описание управления</h2>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit. In porta sed erat non dignissim. Phasellus euismod varius nulla, et fringilla erat commodo a. Pellentesque vehicula eleifend ante, quis luctus velit consequat at. Sed nec auctor lacus. Praesent rhoncus tellus nisl, in porttitor leo finibus quis. Fusce cursus nisl a hendrerit convallis. Duis tempor risus id vulputate mollis. Vestibulum egestas elit arcu, sed auctor sem dapibus id.
                 </div>
             </div>
         </div>
     </div>
+
+    {% include "login_modal.twig" %}
 {% endblock %}
 
 {% block script %}
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
     {% include "script.twig" %}
+    <script src="web/js/input_handler.js"></script>
 {% endblock %}

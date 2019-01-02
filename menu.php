@@ -1,6 +1,7 @@
 <?php
 require_once("inc/common.inc.php");
 
-$vars = ['username' => '$username'];
+$username = getFromSession('username');
+$vars = ['username' => $username];
 
 echo getView('menu.twig', $vars);

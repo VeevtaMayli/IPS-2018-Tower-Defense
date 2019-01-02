@@ -18,6 +18,7 @@ if (empty($existingGamers)) {
 }
 
 if (checkPassword($username, $password)) {
+    saveToSession('username', $username);
     echo json_encode(ERR_NONE);
     exit();
 } else {

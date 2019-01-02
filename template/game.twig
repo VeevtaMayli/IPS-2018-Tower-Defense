@@ -61,7 +61,7 @@
                 </div>
                 <div class="card text-center bg-light border-success">
                     <div class="card-body px-1">
-                        <button id="exit" type="button" class="btn btn-light text-success px-4 py-3 my-1">Menu</button>
+                        <button id="return" type="button" class="btn btn-light text-success px-4 py-3 my-1">Menu</button>
                     </div>
                 </div>
             </div>
@@ -72,5 +72,6 @@
 {% block script %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     {% include "script.twig" %}
+    <script src="web/js/return_handler.js"></script>
     <script src="web/js/main.js" type="module"></script>
 {% endblock %}

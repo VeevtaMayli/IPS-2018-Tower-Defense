@@ -8,7 +8,7 @@ const LASER_WIDTH = 5;
 const LASER_COLOR = '#EE82EE';
 const LASER_RANGE = 100;
 const LASER_BULLET_LIFETIME = 6;
-const LASER_SIZE = 20;
+const LASER_SIZE = 40;
 
 const MORTAR_COST = 60;
 const MORTAR_DAMAGE = 50;
@@ -21,7 +21,7 @@ const MORTAR_BULLET_COLOR = '#808080';
 const MORTAR_SHELL_MIN_RADIUS = 25;
 const MORTAR_SHELL_COLOR = '#FF0';
 const MORTAR_SHELL_LIFETIME = 10;
-const MORTAR_SIZE = 25;
+const MORTAR_SIZE = 50;
 
 const TURRETS = {
     Laser: {

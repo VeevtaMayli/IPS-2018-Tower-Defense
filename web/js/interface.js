@@ -2,16 +2,21 @@ import {TURRETS, Turret} from './turret.js';
 import {TILE_SIZE, WAVE_FREQUENCY, game} from './game.js';
 
 const ui = {
-    buyControls: document.getElementById('turrets_buy_controls'),
     turretImages: {
         Laser: document.getElementById('laser_image'),
         Mortar: document.getElementById('mortar_image'),
     },
+
+    buyControls: document.getElementById('turrets_buy_controls'),
     waveStarter: document.getElementById('wave_starter'),
     pauseControl: document.getElementById('pause_controller'),
+
     cash: document.getElementById('cash_indicator'),
     wave: document.getElementById('wave_indicator'),
     life: document.getElementById('life_indicator'),
+    kills: document.getElementById('kills_indicator'),
+    score: document.getElementById('score_indicator'),
+
     canvas: document.getElementById('canvas'),
 
     bind: (event, elements, func) => {
@@ -40,6 +45,8 @@ const ui = {
         refresh: () => {
             ui.cash.textContent = game.cash;
             ui.wave.textContent = game.wave;
+            ui.kills.textContent = game.kills;
+            ui.score.textContent = game.score;
         },
     },
     initialize: () => {
@@ -72,11 +79,11 @@ const ui = {
                 turret.x = xTile * TILE_SIZE;
                 turret.y = yTile * TILE_SIZE;
 
-                const xStartTile = xTile - turretInTiles;
-                const yStartTile = yTile - turretInTiles;
+                const xStartTile = xTile - turretInTiles / 2;
+                const yStartTile = yTile - turretInTiles / 2;
 
-                selection.placeable = xStartTile >= 0 && xStartTile < Math.floor((game.widthArea - 2 * turret.size) / TILE_SIZE) &&
-                                      yStartTile >= 0 && yStartTile < Math.floor((game.heightArea - 2 * turret.size) / TILE_SIZE);
+                selection.placeable = xStartTile >= 0 && xStartTile < Math.floor((game.widthArea - turret.size) / TILE_SIZE) &&
+                                      yStartTile >= 0 && yStartTile < Math.floor((game.heightArea - turret.size) / TILE_SIZE);
 
                 for (let dx = 0; dx < 2 * turretInTiles; dx++) {
                     for (let dy = 0; dy < 2 * turretInTiles; dy++) {
@@ -92,22 +99,24 @@ const ui = {
         ui.canvas.addEventListener('click', function(event) {
             const selection = game.selection;
             const turret = selection.turret;
-            const tile = game.tiles[
-                Math.floor((event.pageX - this.offsetLeft) / TILE_SIZE) + ',' +
-                Math.floor((event.pageY - this.offsetTop) / TILE_SIZE)
-            ];
+
+            const turretInTiles = Math.floor(turret.size / TILE_SIZE);
+
+            const xTile = Math.floor((event.pageX - this.offsetParent.offsetLeft - this.offsetLeft) / TILE_SIZE);
+            const yTile = Math.floor((event.pageY - this.offsetParent.offsetTop - this.offsetTop) / TILE_SIZE);
+
+            const xStartTile = xTile - turretInTiles / 2;
+            const yStartTile = yTile - turretInTiles / 2;
 
             if (selection.status === 'placing') {
                 if (selection.placeable) {
                     game.cash -= turret.cost;
+                    game.spent += turret.cost;
                     game.turrets.push(turret);
 
-                    const xTile = (turret.x - TILE_SIZE / 2) / TILE_SIZE;
-                    const yTile = (turret.y - TILE_SIZE / 2) / TILE_SIZE;
-
-                    for (let i = 0; i < TILE_SIZE; i++) {
-                        for (let j = 0; j < TILE_SIZE; j++) {
-                            game.tiles[(xTile + i) + (yTile + j)] = turret;
+                    for (let i = 0; i < turretInTiles; i++) {
+                        for (let j = 0; j < turretInTiles; j++) {
+                            game.tiles[(xStartTile + i) + ', ' + (yStartTile + j)] = turret;
                         }
                     }
                 }

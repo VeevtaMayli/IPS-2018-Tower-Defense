@@ -52,7 +52,7 @@ function drawEnemy({ctx, enemy}) {
 }
 
 function drawTurret({ctx, turret}) {
-    ctx.drawImage(ui.turretImages[turret.type], turret.x - turret.size, turret.y - turret.size, 2 * turret.size, 2 * turret.size);
+    ctx.drawImage(ui.turretImages[turret.type], turret.x - turret.size / 2, turret.y - turret.size / 2, turret.size, turret.size);
 }
 
 function drawTurretArea({ctx, turret}) {

@@ -11,6 +11,8 @@ const START_LIVES = 10;
 
 const game = {
     kills: 0,
+    scores: 0,
+    spent: 0,
     cash: START_CASH,
     lives: START_LIVES,
 
@@ -83,6 +85,7 @@ const game = {
             dt: deltaTime,
         });
         game.ticks++;
+        game.scoring();
 
         if (!game.paused) {
             requestAnimationFrame(game.tick);
@@ -101,7 +104,10 @@ const game = {
     end: () => {
         game.pause();
         recordScore(game.kills);
-        console.log("Конец игры!");
+        console.log('Конец игры!');
+    },
+    scoring: function() {
+        this.score = this.kills * this.wave + this.spent;
     },
 };
 

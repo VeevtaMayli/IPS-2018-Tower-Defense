@@ -1,8 +1,7 @@
 <?php
-
-function getInfoByName($name)
+function getFieldByKnownField($knownField, $field)
 {
-    $query = "SELECT name FROM " . USER_TABLE .  " WHERE name = '" . dbQuote($name)  . "';";
+    $query = "SELECT " . $field . " FROM " . USER_TABLE .  " WHERE name = '" . dbQuote($knownField)  . "';";
     return dbQueryGetResult($query);
 }
 

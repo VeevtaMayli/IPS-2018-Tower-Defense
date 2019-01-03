@@ -1,4 +1,5 @@
 import {PATH_COLOR, PATH_BORDER_COLOR} from './maps.js';
+import {getResponse} from './ajax.js';
 
 function moveToTarget({object, target, dt}) {
     const distanceX = target.x - object.x;
@@ -42,8 +43,14 @@ function pxToTile(x, y, tileSize) {
     return Math.floor(x / tileSize) + ', ' + Math.floor(y / tileSize);
 }
 
+function recordScore(score) {
+    const data = {'score': score};
+    getResponse('score_recorder.php', data);
+}
+
 export {
     moveToTarget,
     inRadius,
     splitIntoTiles,
+    recordScore,
 };

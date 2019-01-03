@@ -2,7 +2,7 @@ import {MAPS} from './maps.js';
 import {ENEMY_SIZE, ENEMY_START_HP, ENEMY_HP_COEF, ENEMY_IMAGE} from './enemy.js';
 import {drawMap, redraw} from './drawing.js';
 import {update} from './updating.js';
-import {splitIntoTiles} from './game_utils.js';
+import {splitIntoTiles, recordScore} from './game_utils.js';
 
 const WAVE_FREQUENCY = 800;
 const TILE_SIZE = 5;
@@ -100,6 +100,7 @@ const game = {
     },
     end: () => {
         game.pause();
+        recordScore(game.kills);
         console.log("Конец игры!");
     },
 };

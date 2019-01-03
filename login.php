@@ -10,7 +10,7 @@ if (empty($username) || empty($password)) {
     return;
 }
 
-$existingGamers = getInfoByName($username);
+$existingGamers = getFieldByKnownField($username, 'name');
 
 if (empty($existingGamers)) {
     echo json_encode(ERR_USER_NOT_EXISTS);

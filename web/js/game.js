@@ -104,7 +104,7 @@ const game = {
     end: () => {
         game.pause();
         recordScore(game.kills);
-        console.log('Конец игры!');
+        $('#end_game_modal').modal('show');
     },
     scoring: function() {
         this.score = this.kills * this.wave + this.spent;

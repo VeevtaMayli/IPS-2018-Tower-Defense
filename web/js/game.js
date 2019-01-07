@@ -5,6 +5,8 @@ import {update} from './updating.js';
 import {splitIntoTiles, recordScore} from './game_utils.js';
 
 const WAVE_FREQUENCY = 800;
+const BASE_TIME_COEF = 1;
+const MAX_TIME_COEF = 4;
 const TILE_SIZE = 5;
 const START_CASH = 35;
 const START_LIVES = 10;
@@ -21,6 +23,8 @@ const game = {
     lastWave: 0,
     lastTimestamp: Date.now(),
     paused: true,
+    fast: false,
+    timeCoef: 1,
 
     map: MAPS.baseMap,
     tiles: {},
@@ -61,7 +65,7 @@ const game = {
     },
     tick: () => {
         const currentTimeStamp = Date.now();
-        const deltaTime = (currentTimeStamp - game.lastTimestamp) * 0.001; //сколько секунд прошло с прошлого кадра
+        const deltaTime = game.timeCoef * (currentTimeStamp - game.lastTimestamp) * 0.001; //сколько секунд прошло с прошлого кадра
         game.lastTimestamp = currentTimeStamp;
 
         // processMouseEvents({
@@ -114,5 +118,7 @@ const game = {
 export {
     TILE_SIZE,
     WAVE_FREQUENCY,
+    BASE_TIME_COEF,
+    MAX_TIME_COEF,
     game,
 };

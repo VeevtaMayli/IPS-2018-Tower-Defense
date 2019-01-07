@@ -13,7 +13,7 @@ const ENEMY_HP_COEF = {
 
 const ENEMY_SIZE = 30;
 //const ENEMY_START_COST = 2;
-const ENEMY_SPEED = 590;
+const ENEMY_SPEED = 90;
 const ENEMY_DISTANCE = 40;
 const ENEMIES_COUNT = 10;
 const ENEMY_START_HP = 1;

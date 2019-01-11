@@ -1,6 +1,9 @@
-import {PATH_WIDTH, PATH_BORDER_WIDTH, PATH_COLOR, PATH_BORDER_COLOR} from './maps.js';
+import {PATH_WIDTH, PATH_BORDER_WIDTH, PATH_COLOR, PATH_BORDER_COLOR, FINISH_PATH_COLOR} from './maps.js';
 import {game} from './game.js';
 import {ui} from './interface.js';
+
+const ALLOWED_ZONE_COLOR = 'rgba(255, 255, 255, .3)';
+const FORBIDDEN_ZONE_COLOR = 'rgba(255, 0, 0, .3)';
 
 function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets, dt}) {
     drawMap({ctx, boxWidth, boxHeight, map});
@@ -24,8 +27,11 @@ function redraw({ctx, boxWidth, boxHeight, map, enemies, turrets, bullets, dt}) 
 }
 
 function drawMap({ctx, boxWidth, boxHeight, map}) {
-    ctx.fillStyle = 'rgba(153, 178, 22, 1)';
-    ctx.fillRect(0, 0, boxWidth, boxHeight);
+    const canvas = ctx.canvas;
+    const dx = canvas.offsetParent.offsetLeft + canvas.offsetLeft;
+    const dy = canvas.offsetParent.offsetTop + canvas.offsetTop;
+
+    ctx.drawImage(map.img, dx, dy, dx + boxWidth, dy + boxHeight, 0, 0, boxWidth, boxHeight);
     const start = map[0];
     ctx.strokeStyle = PATH_BORDER_COLOR;
     ctx.lineWidth = PATH_WIDTH + 2 * PATH_BORDER_WIDTH;
@@ -44,6 +50,13 @@ function drawMap({ctx, boxWidth, boxHeight, map}) {
         ctx.lineTo(turn.x, turn.y);
     });
     ctx.stroke();
+
+    const endPoint = map.length - 1;
+
+    ctx.fillStyle = FINISH_PATH_COLOR;
+    ctx.beginPath();
+    ctx.arc(map[endPoint].x, map[endPoint].y, PATH_WIDTH / 1.1, 0, Math.PI * 2);
+    ctx.fill();
 }
 
 function drawEnemy({ctx, enemy}) {
@@ -56,7 +69,7 @@ function drawTurret({ctx, turret}) {
 }
 
 function drawTurretArea({ctx, turret}) {
-    ctx.fillStyle = game.selection.placeable ? 'rgba(255, 255, 255, .3)' : 'rgba(255, 0, 0, .3)';
+    ctx.fillStyle = game.selection.placeable ? ALLOWED_ZONE_COLOR : FORBIDDEN_ZONE_COLOR;
     ctx.beginPath();
     ctx.arc(turret.x, turret.y, turret.range, 0, Math.PI * 2);
     ctx.fill();

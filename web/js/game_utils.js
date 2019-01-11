@@ -1,5 +1,6 @@
 import {PATH_COLOR, PATH_BORDER_COLOR} from './maps.js';
 import {getResponse} from './ajax.js';
+import {FINISH_PATH_COLOR} from "./maps";
 
 function moveToTarget({object, target, dt}) {
     const distanceX = target.x - object.x;
@@ -32,7 +33,7 @@ function splitIntoTiles(ctx, tiles, tileSize) {
             ')';
 
             const curTile = pxToTile(x, y, tileSize);
-            if (curTile && (pixelColor === PATH_COLOR || pixelColor === PATH_BORDER_COLOR)) {
+            if (curTile && (pixelColor === PATH_COLOR || pixelColor === PATH_BORDER_COLOR || pixelColor === FINISH_PATH_COLOR)) {
                 tiles[curTile] = true;
             }
         }

@@ -74,7 +74,8 @@ html
     margin: 30px;
 }
 
-.menu-button
+.menu-button,
+.form-field
 {
     margin-bottom: 20px;
 }

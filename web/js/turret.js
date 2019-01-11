@@ -14,14 +14,14 @@ const MORTAR_COST = 60;
 const MORTAR_DAMAGE = 50;
 const MORTAR_FREQUENCY = 120;
 const MORTAR_RANGE = 200;
-const MORTAR_BULLET_SIZE = 3;
+const MORTAR_BULLET_SIZE = 60;
 const MORTAR_BULLET_LIFETIME = Infinity;
 const MORTAR_BULLET_SPEED = 150;
-const MORTAR_BULLET_COLOR = '#808080';
-const MORTAR_SHELL_MIN_RADIUS = 25;
-const MORTAR_SHELL_COLOR = '#FF0';
+const MORTAR_SHELL_MIN_RADIUS = 40;
 const MORTAR_SHELL_LIFETIME = 10;
 const MORTAR_SIZE = 50;
+const MORTAR_BULLET_IMAGE = 'web/img/stone.png';
+const MORTAR_SHELL_IMAGE = 'web/img/shell.png';
 
 const TURRETS = {
     Laser: {
@@ -86,11 +86,12 @@ const TURRETS = {
 
                         bullets.push({
                             drawBullet: ({ctx, dt}) => {
-                                ctx.fillStyle = MORTAR_SHELL_COLOR;
-                                ctx.beginPath();
-                                ctx.moveTo(target.x, target.y);
-                                ctx.arc(target.x, target.y, radius, 0, Math.PI * 2);
-                                ctx.fill();
+                                ctx.drawImage(game.bullets.mortarShellImg, target.x - radius / 2, target.y - radius / 2, radius, radius);
+                                // ctx.fillStyle = MORTAR_SHELL_COLOR;
+                                // ctx.beginPath();
+                                // ctx.moveTo(target.x, target.y);
+                                // ctx.arc(target.x, target.y, radius, 0, Math.PI * 2);
+                                // ctx.fill();
                             },
                             lifetime: MORTAR_SHELL_LIFETIME,
                         });
@@ -98,8 +99,7 @@ const TURRETS = {
                         this.lifetime = 1;
                     } else {
                         const size = MORTAR_BULLET_SIZE;
-                        ctx.fillStyle = MORTAR_BULLET_COLOR;
-                        ctx.fillRect(shell.x - size, shell.y - size, 2 * size, 2 * size);
+                        ctx.drawImage(game.bullets.mortarImg, shell.x - size / 2, shell.y - size / 2, size, size);
                     }
                 },
                 lifetime: MORTAR_BULLET_LIFETIME,
@@ -125,5 +125,7 @@ function Turret({type, id, x, y}) {
 
 export {
     TURRETS,
+    MORTAR_BULLET_IMAGE,
+    MORTAR_SHELL_IMAGE,
     Turret,
 };

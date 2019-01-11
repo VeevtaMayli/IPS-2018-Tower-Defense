@@ -1,14 +1,15 @@
-import {MAPS} from './maps.js';
+        import {MAPS, MAP_IMAGE} from './maps.js';
 import {ENEMY_SIZE, ENEMY_START_HP, ENEMY_HP_COEF, ENEMY_IMAGE} from './enemy.js';
 import {drawMap, redraw} from './drawing.js';
 import {update} from './updating.js';
 import {splitIntoTiles, recordScore} from './game_utils.js';
+import {MORTAR_BULLET_IMAGE, MORTAR_SHELL_IMAGE} from './turret.js';
 
 const WAVE_FREQUENCY = 800;
 const BASE_TIME_COEF = 1;
 const MAX_TIME_COEF = 4;
 const TILE_SIZE = 5;
-const START_CASH = 35;
+const START_CASH = 350;
 const START_LIVES = 10;
 
 const game = {
@@ -46,6 +47,9 @@ const game = {
         game.widthArea = width;
         game.heightArea = height;
 
+        game.map.img = new Image();
+        game.map.img.src = MAP_IMAGE;
+
         drawMap({
             ctx: game.context,
             boxWidth: game.widthArea,
@@ -55,6 +59,12 @@ const game = {
 
         game.enemies.img = new Image();
         game.enemies.img.src = ENEMY_IMAGE;
+
+        game.bullets.mortarImg = new Image();
+        game.bullets.mortarImg.src = MORTAR_BULLET_IMAGE;
+
+        game.bullets.mortarShellImg = new Image();
+        game.bullets.mortarShellImg.src = MORTAR_SHELL_IMAGE;
 
         splitIntoTiles(game.context, game.tiles, TILE_SIZE);
 

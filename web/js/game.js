@@ -14,7 +14,7 @@ const START_LIVES = 10;
 
 const game = {
     kills: 0,
-    scores: 0,
+    score: 0,
     spent: 0,
     cash: START_CASH,
     lives: START_LIVES,
@@ -117,7 +117,7 @@ const game = {
     },
     end: () => {
         game.pause();
-        recordScore(game.kills);
+        recordScore(game.score);
         $('#end_game_modal').modal('show');
     },
     scoring: function() {

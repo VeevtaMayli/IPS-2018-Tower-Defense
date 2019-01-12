@@ -1,4 +1,4 @@
-        import {MAPS, MAP_IMAGE} from './maps.js';
+import {MAPS, MAP_IMAGE} from './maps.js';
 import {ENEMY_SIZE, ENEMY_START_HP, ENEMY_HP_COEF, ENEMY_IMAGE} from './enemy.js';
 import {drawMap, redraw} from './drawing.js';
 import {update} from './updating.js';
@@ -9,7 +9,7 @@ const WAVE_FREQUENCY = 800;
 const BASE_TIME_COEF = 1;
 const MAX_TIME_COEF = 4;
 const TILE_SIZE = 5;
-const START_CASH = 350;
+const START_CASH = 35;
 const START_LIVES = 10;
 
 const game = {

@@ -16,7 +16,12 @@ const ui = {
     wave: document.getElementById('wave_indicator'),
     life: document.getElementById('life_indicator'),
     kills: document.getElementById('kills_indicator'),
+    killsMessage: document.getElementById('kills_counter'),
     score: document.getElementById('score_indicator'),
+    scoreMessage: document.getElementById('score_counter'),
+
+    toMenu: document.getElementById('to_menu'),
+    playAgain: document.getElementById('again_button'),
 
     canvas: document.getElementById('canvas'),
 
@@ -48,6 +53,8 @@ const ui = {
             ui.wave.textContent = game.wave;
             ui.kills.textContent = game.kills;
             ui.score.textContent = game.score;
+            ui.killsMessage.textContent = game.kills;
+            ui.scoreMessage.textContent = game.score;
         },
     },
     initialize: () => {
@@ -59,7 +66,7 @@ const ui = {
 
         window.addEventListener('blur', () => {
             game.paused = true;
-        })
+        });
 
         ui.bind('click', ui.buyControls.children, function() {
             if (!game.paused) {
@@ -81,6 +88,14 @@ const ui = {
             this.textContent = game.fast ? 'Faster' : 'Slower';
             game.timeCoef = game.fast ? BASE_TIME_COEF : MAX_TIME_COEF;
             game.fast = !game.fast;
+        });
+
+        ui.toMenu.addEventListener('click', () => {
+            window.location = 'menu.php';
+        });
+
+        ui.playAgain.addEventListener('click', () => {
+            window.location.reload(true);
         });
 
         ui.canvas.addEventListener('mousemove', function(event) {

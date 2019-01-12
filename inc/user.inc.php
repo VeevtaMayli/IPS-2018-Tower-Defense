@@ -24,3 +24,19 @@ function checkPassword($name, $password)
     $validHash = getPasswordHashByName($name)[0]["password"];
     return password_verify($password, $validHash);
 }
+
+function changeName($curName, $newName)
+{
+    $id = getFieldByKnownField($curName, 'user_id');
+    $query = "UPDATE " . USER_TABLE . " SET name = '" .  dbQuote($newName) . "' WHERE user_id = '" . $id[0]["user_id"]  . "';";
+    dbQuery($query);
+    return dbGetLastInsertId();
+}
+
+function changePassword($name, $password)
+{
+    $id = getFieldByKnownField($name, 'user_id');
+    $query = "UPDATE " . USER_TABLE . " SET password = '" .  dbQuote($password) . "' WHERE user_id = '" . $id[0]["user_id"]  . "'";
+    dbQuery($query);
+    return dbGetLastInsertId();
+}

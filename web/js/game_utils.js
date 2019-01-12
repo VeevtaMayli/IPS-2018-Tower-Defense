@@ -1,6 +1,5 @@
-import {PATH_COLOR, PATH_BORDER_COLOR} from './maps.js';
+import {PATH_COLOR, PATH_BORDER_COLOR, FINISH_PATH_COLOR} from './maps.js';
 import {getResponse} from './ajax.js';
-import {FINISH_PATH_COLOR} from "./maps";
 
 function moveToTarget({object, target, dt}) {
     const distanceX = target.x - object.x;

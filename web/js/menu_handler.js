@@ -2,6 +2,7 @@ $(window).on('load', onWindowLoaded);
 
 function onWindowLoaded() {
     newGameButtonClicked();
+    profileButtonClicked();
     recordsButtonClicked();
     exitButtonClicked();
 }
@@ -9,6 +10,12 @@ function onWindowLoaded() {
 function newGameButtonClicked() {
     $('#new_game').click(() => {
         window.location = 'game.php';
+    });
+}
+
+function profileButtonClicked() {
+    $('#edit_profile').click(() => {
+        window.location = 'profile.php';
     });
 }
 

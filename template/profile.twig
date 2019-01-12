@@ -1,0 +1,43 @@
+{% extends "layout.twig" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block header %}
+    <div class="row text-center">
+        <div class="col">
+            <h2 id="cur_name" class="text-dark menu-title">{{ username }}</h2>
+        </div>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-sm-6 col-md-4 offset-sm-3 offset-md-4">
+            <ul class="nav flex-column">
+                <form>
+                    <div class="form-group">
+                        <label class="sr-only" for="username">Login</label>
+                        <input type="text" class="form-control btn_menu form-field" id="username" name="username" required value={{ username }}>
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" id="password"  name="password" class="form-control btn_menu form-field" placeholder="Password" required>
+                        <label for="repeated_password" class="sr-only">Password</label>
+                        <input type="password" id="repeated_password" name="confirmedPassword" class="form-control btn_menu form-field" placeholder="Repeat password" required>
+                    </div>
+                    <button id="return" type="button" class="btn btn-success border-light">Back</button>
+                    <button id="change_profile" type="button" class="btn btn-success border-light">Change</button>
+                </form>
+            </ul>
+        </div>
+    </div>
+
+    {% include "ok_modal.twig" %}
+{% endblock %}
+
+{% block script %}
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    {% include "script.twig" %}
+    <script src="web/js/profile_editor.js"></script>
+    <script src="web/js/return_handler.js"></script>
+{% endblock %}

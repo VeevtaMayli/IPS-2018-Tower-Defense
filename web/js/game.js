@@ -60,8 +60,8 @@ const game = {
         game.enemies.img = new Image();
         game.enemies.img.src = ENEMY_IMAGE;
 
-        game.bullets.mortarImg = new Image();
-        game.bullets.mortarImg.src = MORTAR_BULLET_IMAGE;
+        game.bullets.mortarBulletImg = new Image();
+        game.bullets.mortarBulletImg.src = MORTAR_BULLET_IMAGE;
 
         game.bullets.mortarShellImg = new Image();
         game.bullets.mortarShellImg.src = MORTAR_SHELL_IMAGE;

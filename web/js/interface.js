@@ -65,7 +65,8 @@ const ui = {
         }, false);
 
         window.addEventListener('blur', () => {
-            game.paused = true;
+            const clickPause = new Event('click');
+            ui.pauseControl.dispatchEvent(clickPause);
         });
 
         ui.bind('click', ui.buyControls.children, function() {

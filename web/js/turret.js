@@ -87,11 +87,6 @@ const TURRETS = {
                         bullets.push({
                             drawBullet: ({ctx, dt}) => {
                                 ctx.drawImage(game.bullets.mortarShellImg, target.x - radius / 2, target.y - radius / 2, radius, radius);
-                                // ctx.fillStyle = MORTAR_SHELL_COLOR;
-                                // ctx.beginPath();
-                                // ctx.moveTo(target.x, target.y);
-                                // ctx.arc(target.x, target.y, radius, 0, Math.PI * 2);
-                                // ctx.fill();
                             },
                             lifetime: MORTAR_SHELL_LIFETIME,
                         });
@@ -99,7 +94,7 @@ const TURRETS = {
                         this.lifetime = 1;
                     } else {
                         const size = MORTAR_BULLET_SIZE;
-                        ctx.drawImage(game.bullets.mortarImg, shell.x - size / 2, shell.y - size / 2, size, size);
+                        ctx.drawImage(game.bullets.mortarBulletImg, shell.x - size / 2, shell.y - size / 2, size, size);
                     }
                 },
                 lifetime: MORTAR_BULLET_LIFETIME,

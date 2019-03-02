@@ -31,7 +31,7 @@ function drawMap({ctx, boxWidth, boxHeight, map}) {
     const dx = canvas.offsetParent.offsetLeft + canvas.offsetLeft;
     const dy = canvas.offsetParent.offsetTop + canvas.offsetTop;
 
-    ctx.drawImage(map.img, dx, dy, dx + boxWidth, dy + boxHeight, 0, 0, boxWidth, boxHeight);
+    ctx.drawImage(map.img, dx, dy, boxWidth, boxHeight, 0, 0, boxWidth, boxHeight);
     const start = map[0];
     ctx.strokeStyle = PATH_BORDER_COLOR;
     ctx.lineWidth = PATH_WIDTH + 2 * PATH_BORDER_WIDTH;

@@ -1,7 +1,9 @@
 import {ui} from './interface.js';
 import {game} from './game.js';
 
-(function main() {
+window.onload = main;
+
+function main() {
     const gameArea = {
         width: ui.canvas.offsetWidth,
         height: ui.canvas.offsetHeight,
@@ -11,4 +13,4 @@ import {game} from './game.js';
     ui.initialize();
     game.initialize(gameArea);
     game.start();
-})();
+}
